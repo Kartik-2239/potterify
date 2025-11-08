@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: 'harry';
+    src: url('./assets/fonts/AlexBrush-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'potter';
+    src: url('./assets/fonts/HarryPotter.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'harry', sans-serif;
+}
+
+.potter-font {
+    font-family: 'potter', sans-serif;
+}
+
+.to-appearing {
+    /* opacity: 0; */
+    animation: fadeIn 2s ease-in forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
