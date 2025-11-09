@@ -32,13 +32,13 @@ function App() {
       body: JSON.stringify({ base64_image: base64Image, chats: chats }),
     })
     const data = await response.json();
-    console.log("data", data)
+    // console.log("data", data)
     setChats(prev => [...prev, {response: data.text, imageDescription: data.imageDescription}])
     const curChat = chats
     curChat.push({response: data.text, imageDescription: data.imageDescription})
     setChats(curChat)
     setResponse(data.text)
-    console.log("curChat", chats)
+    // console.log("curChat", chats)
   }
   const onKeyDown = (e: KeyboardEvent) => {
     if (e.key !== 'Enter') return;
@@ -48,7 +48,7 @@ function App() {
     const dataUrl = inst.canvas.drawing.toDataURL("image/png");
     setImageData(dataUrl)
     setLoading(true)
-    console.log("logging base64")
+    // console.log("logging base64")
     getResponse(dataUrl).then(() => {
       setLoading(false)
       handleEnter()
@@ -63,7 +63,7 @@ function App() {
   }, [inputMode])
 
   const handleEnter = () => {
-    console.log("loading", loading)
+    // console.log("loading", loading)
     setInputMode(prev => !prev)
   }
   return (
