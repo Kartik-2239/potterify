@@ -29,15 +29,12 @@ const InputCanvas = ({ onKeyDown, loading, containerRef, canvasRef }: { onKeyDow
         onKeyDown(new KeyboardEvent("keydown", { key: "Enter" }));
     }
 
-    const handleDraw = (event: any) => {
-        console.log("draw", event)
-    }
     const handleEraser = () => {
         canvasRef.current.clear();
     }
 
     const defaultProps = {
-        onChange: handleDraw,
+        // onChange: null,
         loadTimeOffset: 5,
         lazyRadius: 1,
         brushRadius: brushSize,
@@ -56,7 +53,7 @@ const InputCanvas = ({ onKeyDown, loading, containerRef, canvasRef }: { onKeyDow
         gridSizeY: 25,
         hideGridX: false,
         hideGridY: false,
-        enablePanAndZoom: true,
+        enablePanAndZoom: false,
         mouseZoomFactor: 0.01,
         zoomExtents: { min: 0.33, max: 3 },
         backgroundColor: "transparent",
@@ -79,32 +76,35 @@ const InputCanvas = ({ onKeyDown, loading, containerRef, canvasRef }: { onKeyDow
                     style={{ width: "100%", height: "100%" }}
                 />
             )}
-            <button
-                type="button"
-                onClick={handleClick}
-                className="absolute bottom-3 right-3 bg-amber-200 text-black px-3 py-1 rounded shadow"
-            >
-                Ask
-            </button>
-            <div className="w-full h-10 flex justify-center items-center gap-10">
-                <div className="w-auto px-4 h-10 relative border rounded-md flex justify-center items-center gap-10">
+
+            
+
+            <div className="absolute bottom-3 w-full flex justify-center items-center flex-row gap-10">
+                <div className="w-auto px-4 h-12 relative border-2 rounded-md flex justify-center items-center backdrop-blur-sm gap-10">
                     <div className="brush flex justify-center items-center gap-2">
                         {BrushSizes.map((size) => (
                             <div key={size}>
                                 <div
-                                    className="bg-black rounded-full"
-                                    style={{ width: `${size*5}px`, height: `${size*5}px` }}
+                                    className="bg-black rounded-full select-none"
+                                    style={{ width: `${size*5}px`, height: `${size*5}px`, border: brushSize === size ? `2px solid white` : `none` }}
                                     onClick={() => setBrushSize(size)}
                                 />
                             </div>
                         ))}
                     </div>
                     <div className="eraser flex justify-center items-center">
-                        <div className="cursor-pointer px-2 font-mono text-lg" onClick={handleEraser}>
-                            clear
+                        <div className="cursor-pointer px-2 font-mono text-base sm:text-lg select-none" onClick={handleEraser}>
+                            [clear]
                         </div>
                     </div>
                 </div>
+                <button
+                    type="button"
+                    onClick={handleClick}
+                    className="h-12 right-3 select-none backdrop-blur-sm  border-2 border-black sm:text-3xl text-xl text-black px-2 py-1 rounded-md shadow"
+                >
+                    Ask
+                </button>
             </div>
         </div>
         
