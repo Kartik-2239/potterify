@@ -23,8 +23,8 @@ function App() {
   const canvasRef = useRef<any>(null);
 
   const getResponse = async (base64Image: string) => {
-    // const response = await fetch('https://potterify-production.up.railway.app/api/judgeimage', {
-    const response = await fetch('http://127.0.0.1:8000/api/judgeimage', {
+    const response = await fetch('https://potterify-production.up.railway.app/api/judgeimage', {
+    // const response = await fetch('http://127.0.0.1:8000/api/judgeimage', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
